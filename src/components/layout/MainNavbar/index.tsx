@@ -17,7 +17,7 @@ const MainNavbar = () => {
               Home
             </NavLink>
             <NavLink className="nav-link" to="/popular">
-              Ranking
+              Populares
             </NavLink>
             <NavLink className="nav-link" to="/upcoming">
               Próximos Estrenos
