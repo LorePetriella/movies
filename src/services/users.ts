@@ -1,4 +1,5 @@
-import { SignUpPayload } from "../types";
+import { mapToArray } from "../helpers/mapToArray";
+import { SignUpPayload, User } from "../types";
 import { fireBase } from "../utils/axios";
 
 const add = async (userPrueba: SignUpPayload) => {
@@ -7,9 +8,18 @@ const add = async (userPrueba: SignUpPayload) => {
   return response.data;
 };
 
-const getAll = async () => {
+const getAll = async (): Promise<User[]> => {
   const response = await fireBase.get("/users.json");
-  return response.data;
+  return mapToArray(response.data);
 };
 
-export const servicesUser = { add, getAll };
+const getBy = async (value: string, type: "email" | "sesiontoken") => {
+  const users = await getAll();
+  const user = users.find((user) => user[type] === value);
+  return user;
+};
+
+const update = ({ id, ...rest }: Partial<User>) => {
+  const response = fireBase.patch(`/users/${id}.json`, { ...rest });
+};
+export const servicesUser = { add, getAll, update, getBy };

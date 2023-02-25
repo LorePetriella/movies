@@ -1,6 +1,7 @@
 import { Layout, LoginForm } from "../../components";
+import { withAuth } from "../../hoc";
 
-const Login = () => {
+const LoginPage = () => {
   return (
     <Layout>
       <LoginForm />
@@ -8,4 +9,4 @@ const Login = () => {
   );
 };
 
-export { Login };
+export const Login = withAuth(LoginPage);

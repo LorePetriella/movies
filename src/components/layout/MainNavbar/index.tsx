@@ -20,7 +20,7 @@ const MainNavbar = () => {
               Populares
             </NavLink>
             <NavLink className="nav-link" to="/upcoming">
-              Próximos Estrenos
+              Últimos Lanzamientos
             </NavLink>
             <NavLink className="nav-link" to="/login">
               Cerrar Sesión
