@@ -1,8 +1,9 @@
 import { Layout } from "../../components";
+import { withAuth } from "../../hoc";
 import React from "react";
 
-const Dashboard = () => {
+const DashboardPage = () => {
   return <Layout>Página Dashboard</Layout>;
 };
 
-export { Dashboard };
+export const Dashboard = withAuth(DashboardPage);

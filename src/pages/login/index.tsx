@@ -1,8 +1,13 @@
-import { Layout } from "../../components";
+import { Layout, LoginForm } from "../../components";
+import { withAuth } from "../../hoc";
 import React from "react";
 
-const Login = () => {
-  return <Layout>Página Login</Layout>;
+const LoginPage = () => {
+  return (
+    <Layout>
+      <LoginForm />
+    </Layout>
+  );
 };
 
-export { Login };
+export const Login = withAuth(LoginPage);

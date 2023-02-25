@@ -1,7 +1,8 @@
 import { Layout } from "../../components";
+import { withAuth } from "../../hoc";
 import React from "react";
-const Upcoming = () => {
+const UpcomingPage = () => {
   return <Layout>Página Upcoming</Layout>;
 };
 
-export { Upcoming };
+export const Upcoming = withAuth(UpcomingPage);

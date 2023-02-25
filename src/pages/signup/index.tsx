@@ -1,8 +1,13 @@
-import { Layout } from "../../components";
+import { Layout, SignUpForm } from "../../components";
+import { withAuth } from "../../hoc";
 import React from "react";
 
-const Signup = () => {
-  return <Layout>Página Signup</Layout>;
+const SignupPage = () => {
+  return (
+    <Layout>
+      <SignUpForm />
+    </Layout>
+  );
 };
 
-export { Signup };
+export const Signup = withAuth(SignupPage);
