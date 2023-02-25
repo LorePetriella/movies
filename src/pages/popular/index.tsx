@@ -4,10 +4,9 @@ import { apiMovies } from "../../utils/axios";
 import { Movie } from "../../types";
 import { Col, Container, Row } from "react-bootstrap";
 import { withAuth } from "../../hoc";
-
+import React from "react";
 const PopularPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  import React from "react";
 
   useEffect(() => {
     apiMovies
