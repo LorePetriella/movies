@@ -12,7 +12,7 @@ const withAuth = (Component: FC): FC => {
     const navigate = useNavigate();
 
     useEffect(() => {
-      console.log(location.pathname, me);
+      // console.log(location.pathname, me);
 
       if (me && publicRoutes.includes(location.pathname)) {
         navigate("/");

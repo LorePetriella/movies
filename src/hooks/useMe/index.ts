@@ -7,23 +7,16 @@ import { LoginForm, User } from "../../types";
 const useMe = () => {
   const { me, setMe } = useContext(AuthContext);
 
-  useEffect(() => {
-    loginWithToken();
-  }, []);
-
   const login = async ({ email, pass }: LoginForm) => {
-    const { id, name, lastname, password } = (await servicesUser.getBy(
-      email,
-      "email"
-    )) as User;
+    const user = (await servicesUser.getBy(email, "email")) as User;
 
-    if (password === pass) {
+    if (user.password === pass) {
       const sesiontoken = tokenGenerator();
-      servicesUser.update({ id, sesiontoken });
+      servicesUser.update({ id: user.id, sesiontoken });
 
       localStorage.setItem("sesiontoken", sesiontoken);
 
-      setMe({ id, name, lastname, email });
+      setMe(user);
     } else {
       console.log("login incorrecto");
     }
@@ -34,17 +27,25 @@ const useMe = () => {
   const loginWithToken = async () => {
     const sesiontoken = localStorage.getItem("sesiontoken");
 
-    if (sesiontoken) {
-      const { id, name, lastname, email } = (await servicesUser.getBy(
-        sesiontoken,
-        "sesiontoken"
-      )) as User;
-      setMe({ id, name, lastname, email });
+    if (sesiontoken && me !== undefined) {
+      const user = await servicesUser.getBy(sesiontoken, "sesiontoken");
+
+      console.log(user);
+
+      if (user) {
+        setMe({
+          id: user.id,
+          name: user.name,
+          lastname: user.lastname,
+          email: user.email,
+        });
+      }
     }
   };
 
-  const logout = (id: string) => {
-    servicesUser.update({ id, sesiontoken: undefined });
+  const logout = async () => {
+    await servicesUser.update({ id: me?.id, sesiontoken: null });
+    setMe(undefined);
   };
 
   return { me, login, loginWithToken, logout };

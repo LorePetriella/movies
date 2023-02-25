@@ -4,10 +4,14 @@ import {
   Form,
   Nav,
   Navbar as NavbarBST,
+  // NavLink as NavLinkBST,
 } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { useMe } from "../../../hooks";
 
 const MainNavbar = () => {
+  const { logout } = useMe();
+
   return (
     <NavbarBST bg="light" expand="lg">
       <Container fluid>
@@ -28,7 +32,7 @@ const MainNavbar = () => {
             <NavLink className="nav-link" to="/upcoming">
               Últimos Lanzamientos
             </NavLink>
-            <Nav.Link>Cerrar Sesión</Nav.Link>
+            <Nav.Link onClick={logout}>Cerrar sesión</Nav.Link>
             <NavLink className="nav-link" to="/login">
               Login
             </NavLink>
