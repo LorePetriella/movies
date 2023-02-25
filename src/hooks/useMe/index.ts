@@ -11,10 +11,10 @@ const useMe = () => {
     const user = (await servicesUser.getBy(email, "email")) as User;
 
     if (user.password === pass) {
-      const sesiontoken = tokenGenerator();
-      servicesUser.update({ id: user.id, sesiontoken });
+      const sessiontoken = tokenGenerator();
+      servicesUser.update({ id: user.id, sessiontoken });
 
-      localStorage.setItem("sesiontoken", sesiontoken);
+      localStorage.setItem("sessiontoken", sessiontoken);
 
       setMe(user);
     } else {
@@ -25,10 +25,10 @@ const useMe = () => {
   // const signup = (user: Omit<User, "id">) => {};
 
   const loginWithToken = async () => {
-    const sesiontoken = localStorage.getItem("sesiontoken");
+    const sessiontoken = localStorage.getItem("sessiontoken");
 
-    if (sesiontoken && me !== undefined) {
-      const user = await servicesUser.getBy(sesiontoken, "sesiontoken");
+    if (sessiontoken && me !== undefined) {
+      const user = await servicesUser.getBy(sessiontoken, "sessiontoken");
 
       console.log(user);
 
@@ -44,7 +44,7 @@ const useMe = () => {
   };
 
   const logout = async () => {
-    await servicesUser.update({ id: me?.id, sesiontoken: null });
+    await servicesUser.update({ id: me?.id, sessiontoken: null });
     setMe(undefined);
   };
 

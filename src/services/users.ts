@@ -13,7 +13,7 @@ const getAll = async (): Promise<User[]> => {
   return mapToArray(response.data);
 };
 
-const getBy = async (value: string, type: "email" | "sesiontoken") => {
+const getBy = async (value: string, type: "email" | "sessiontoken") => {
   const users = await getAll();
   const user = users.find((user) => user[type] === value);
   return user;
