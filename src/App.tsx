@@ -1,7 +1,6 @@
-import { Routes, Route, Outlet, Link, BrowserRouter } from "react-router-dom";
-import { Dashboard, Login, Signup, Search, Popular } from "./pages";
-import { Upcoming } from "./pages/upcoming";
-
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Dashboard, Login, Signup, Search, Popular, Upcoming } from "./pages";
+import React from "react";
 function App() {
   return (
     <BrowserRouter>
