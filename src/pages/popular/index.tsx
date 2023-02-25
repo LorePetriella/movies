@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { Layout } from "../../components";
 import { apiMovies } from "../../utils/axios";
 import { Movie } from "../../types";
@@ -11,7 +11,9 @@ const PopularPage = () => {
   useEffect(() => {
     apiMovies
       .get("/movie/popular")
-      .then((response) => setMovies(response.data.results));
+      .then((response: { data: { results: SetStateAction<Movie[]> } }) =>
+        setMovies(response.data.results)
+      );
   }, []);
   return (
     <Layout>

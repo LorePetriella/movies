@@ -29,19 +29,25 @@ const useMe = () => {
     }
   };
 
-  const signup = (user: Omit<User, "id">) => {};
+  // const signup = (user: Omit<User, "id">) => {};
 
   const loginWithToken = async () => {
     const sesiontoken = localStorage.getItem("sesiontoken");
 
     if (sesiontoken) {
-      const user = await servicesUser.getBy(sesiontoken, "sesiontoken");
+      const { id, name, lastname, email } = (await servicesUser.getBy(
+        sesiontoken,
+        "sesiontoken"
+      )) as User;
+      setMe({ id, name, lastname, email });
     }
   };
 
-  const logout = () => {};
+  const logout = (id: string) => {
+    servicesUser.update({ id, sesiontoken: undefined });
+  };
 
-  return { me, login, signup, loginWithToken, logout };
+  return { me, login, loginWithToken, logout };
 };
 
 export { useMe };

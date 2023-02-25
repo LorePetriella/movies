@@ -1,13 +1,19 @@
-import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Form,
+  Nav,
+  Navbar as NavbarBST,
+} from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const MainNavbar = () => {
   return (
-    <Navbar bg="light" expand="lg">
+    <NavbarBST bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">AdaMovies</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+        <NavbarBST.Brand href="#">AdaMovies</NavbarBST.Brand>
+        <NavbarBST.Toggle aria-controls="navbarScroll" />
+        <NavbarBST.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
@@ -22,25 +28,13 @@ const MainNavbar = () => {
             <NavLink className="nav-link" to="/upcoming">
               Últimos Lanzamientos
             </NavLink>
-            <NavLink className="nav-link" to="/login">
-              Cerrar Sesión
-            </NavLink>
+            <Nav.Link>Cerrar Sesión</Nav.Link>
             <NavLink className="nav-link" to="/login">
               Login
             </NavLink>
             <NavLink className="nav-link" to="/signup">
               Registro
             </NavLink>
-            {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown> */}
           </Nav>
           <Form className="d-flex">
             <Form.Control
@@ -51,9 +45,9 @@ const MainNavbar = () => {
             />
             <Button variant="outline-dark">Buscar</Button>
           </Form>
-        </Navbar.Collapse>
+        </NavbarBST.Collapse>
       </Container>
-    </Navbar>
+    </NavbarBST>
   );
 };
 
