@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth";
 import { tokenGenerator } from "../../helpers/tokenGenerator";
 import { servicesUser } from "../../services/users";
@@ -21,8 +21,6 @@ const useMe = () => {
       console.log("login incorrecto");
     }
   };
-
-  // const signup = (user: Omit<User, "id">) => {};
 
   const loginWithToken = async () => {
     const sessiontoken = localStorage.getItem("sessiontoken");
