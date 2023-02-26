@@ -18,11 +18,8 @@ export type LoginForm = {
 
 export type Movie = {
   title: string;
-};
-
-export type MovieBanner = {
   id: number;
-  title: string;
+  poster_path: string;
   overview: string;
-  backdrop_path: string;
+  backdrop_path?: string | null;
 };
