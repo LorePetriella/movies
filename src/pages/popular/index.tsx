@@ -1,20 +1,20 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Layout } from "../../components";
-import { apiMovies } from "../../utils/axios";
 import { Movie } from "../../types";
 import { Col, Container, Row } from "react-bootstrap";
 import { withAuth } from "../../hoc";
 import React from "react";
+import { servicesMovies } from "../../services/movies";
+
 const PopularPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    apiMovies
+    servicesMovies
       .get("/movie/popular")
-      .then((response: { data: { results: SetStateAction<Movie[]> } }) =>
-        setMovies(response.data.results)
-      );
+      .then((data) => setMovies(data.results));
   }, []);
+
   return (
     <Layout>
       <Container fluid className="p-4">

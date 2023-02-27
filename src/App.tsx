@@ -1,7 +1,11 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Dashboard, Login, Signup, Search, Popular, Upcoming } from "./pages";
-import React from "react";
+import React, { useEffect } from "react";
+import { useMe } from "./hooks";
 function App() {
+  const { me } = useMe();
+
+  useEffect(() => {}, [me]);
   return (
     <BrowserRouter>
       <Routes>

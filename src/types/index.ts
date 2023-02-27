@@ -5,7 +5,7 @@ export type User = {
   email: string;
   password: string;
   birthdate: Date;
-  sesiontoken?: string;
+  sessiontoken?: string | null;
 };
 
 export type SignUpForm = Omit<User, "id" | ("birthdate" & { birthdate: Date })>;

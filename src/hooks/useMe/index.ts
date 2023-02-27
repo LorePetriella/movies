@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth";
 import { tokenGenerator } from "../../helpers/tokenGenerator";
 import { servicesUser } from "../../services/users";
@@ -7,44 +7,41 @@ import { LoginForm, User } from "../../types";
 const useMe = () => {
   const { me, setMe } = useContext(AuthContext);
 
-  useEffect(() => {
-    loginWithToken();
-  }, []);
-
   const login = async ({ email, pass }: LoginForm) => {
-    const { id, name, lastname, password } = (await servicesUser.getBy(
-      email,
-      "email"
-    )) as User;
+    const user = (await servicesUser.getBy(email, "email")) as User;
 
-    if (password === pass) {
-      const sesiontoken = tokenGenerator();
-      servicesUser.update({ id, sesiontoken });
+    if (user.password === pass) {
+      const sessiontoken = tokenGenerator();
+      servicesUser.update({ id: user.id, sessiontoken });
 
-      localStorage.setItem("sesiontoken", sesiontoken);
+      localStorage.setItem("sessiontoken", sessiontoken);
 
-      setMe({ id, name, lastname, email });
+      setMe(user);
     } else {
       console.log("login incorrecto");
     }
   };
 
-  // const signup = (user: Omit<User, "id">) => {};
-
   const loginWithToken = async () => {
-    const sesiontoken = localStorage.getItem("sesiontoken");
+    const sessiontoken = localStorage.getItem("sessiontoken");
 
-    if (sesiontoken) {
-      const { id, name, lastname, email } = (await servicesUser.getBy(
-        sesiontoken,
-        "sesiontoken"
-      )) as User;
-      setMe({ id, name, lastname, email });
+    if (sessiontoken && me !== undefined) {
+      const user = await servicesUser.getBy(sessiontoken, "sessiontoken");
+
+      if (user) {
+        setMe({
+          id: user.id,
+          name: user.name,
+          lastname: user.lastname,
+          email: user.email,
+        });
+      }
     }
   };
 
-  const logout = (id: string) => {
-    servicesUser.update({ id, sesiontoken: undefined });
+  const logout = async () => {
+    await servicesUser.update({ id: me?.id, sessiontoken: null });
+    setMe(undefined);
   };
 
   return { me, login, loginWithToken, logout };
