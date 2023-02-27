@@ -28,8 +28,6 @@ const useMe = () => {
     if (sessiontoken && me !== undefined) {
       const user = await servicesUser.getBy(sessiontoken, "sessiontoken");
 
-      console.log(user);
-
       if (user) {
         setMe({
           id: user.id,
