@@ -5,9 +5,7 @@ import { useMe } from "./hooks";
 function App() {
   const { me } = useMe();
 
-  useEffect(() => {
-    console.log(me);
-  }, [me]);
+  useEffect(() => {}, [me]);
   return (
     <BrowserRouter>
       <Routes>
