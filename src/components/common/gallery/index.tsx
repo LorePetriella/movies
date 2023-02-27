@@ -6,13 +6,14 @@ import "./styles.scss";
 
 type Props = {
   movies: Movie[];
+  section: string;
 };
 
-const Gallery: FC<Props> = ({ movies }) => {
+const Gallery: FC<Props> = ({ movies, section }) => {
   return (
     <>
       <div className="movie-gallery container">
-        <h2>Populares</h2>
+        <h2>{section}</h2>
         <Row className="flex-nowrap scroll-container">
           {movies.slice(0, 10).map((movie) => (
             <Col xs={6} sm={4} md={3} lg={2} key={movie.id}>
