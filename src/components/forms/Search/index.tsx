@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { FormField } from "../../../types";
 
@@ -30,8 +30,6 @@ const SearchForm: FC<Props> = ({ onSearch }) => {
             setFields((prevState) => ({ ...prevState, query: e.target.value }))
           }
         />
-
-        <Button variant="outline-light">Buscar</Button>
       </Form>
     </NavLink>
   );
