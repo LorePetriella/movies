@@ -19,7 +19,10 @@ const Slider: FC<Props> = ({ movies }) => {
             <img
               className="d-block w-100 slider-img"
               src={`${BASE_IMG}${movie.poster_path}`}
+
               alt={movie.title}
+
+        
             />
             <Carousel.Caption>
               <h3>{movie.title}</h3>
