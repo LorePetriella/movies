@@ -8,7 +8,7 @@ const get = async (endpoint: string) => {
 
 const search = async (
   endpoint: string,
-  params: { query?: string; page?: string }
+  params: { query: string | null; page?: string | null }
 ) => {
   const response = await apiMovies.get(endpoint, {
     params,

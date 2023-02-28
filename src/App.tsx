@@ -14,7 +14,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="search" element={<Search />} />
-          <Route path="popular" element={<Popular />} />
+          <Route path="populares" element={<Popular />} />
           <Route path="upcoming" element={<Upcoming />} />
         </Route>
       </Routes>

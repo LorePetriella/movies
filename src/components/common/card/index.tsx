@@ -1,15 +1,22 @@
+import { FC } from "react";
 import { Card, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { Movie } from "../../../types";
 import "./styles.scss";
 
-const MovieCard = () => {
+type Props = {
+  title: string;
+  img: string;
+  id: number;
+};
+
+const MovieCard: FC<Props> = ({ title, img, id }) => {
+  const navigate = useNavigate();
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img
-        variant="top"
-        src="https://es.web.img3.acsta.net/pictures/23/01/16/17/21/5753145.jpg"
-      />
+    <Card style={{ width: "18rem" }} onClick={() => navigate(`/movies/${id}`)}>
+      <Card.Img variant="top" src={img} />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>{title}</Card.Title>
 
         <Button variant="primary">Más Info</Button>
       </Card.Body>

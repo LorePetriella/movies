@@ -1,13 +1,17 @@
 import { Container, Nav, Navbar as NavbarBST } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
 import { useMe } from "../../../hooks";
+import { FormField } from "../../../types";
 import { SearchForm } from "../../forms/Search";
 
 const MainNavbar = () => {
   const { logout } = useMe();
-
+  const [seachParams, setSearchParams] = useSearchParams();
+  const setSearchQuery = (params: FormField) => {
+    setSearchParams(params);
+  };
   return (
-    <NavbarBST bg="light" expand="lg">
+    <NavbarBST bg="dark" variant="dark" expand="lg">
       <Container fluid>
         <NavbarBST.Brand href="#">AdaMovies</NavbarBST.Brand>
         <NavbarBST.Toggle aria-controls="navbarScroll" />
@@ -20,7 +24,7 @@ const MainNavbar = () => {
             <NavLink className="nav-link" to="/">
               Home
             </NavLink>
-            <NavLink className="nav-link" to="/populares">
+            <NavLink className="nav-link" to="populares">
               Populares
             </NavLink>
             <NavLink className="nav-link" to="/upcoming">
@@ -35,7 +39,7 @@ const MainNavbar = () => {
             </NavLink>
           </Nav>
 
-          <SearchForm onSearch={() => {}} />
+          <SearchForm onSearch={setSearchQuery} />
         </NavbarBST.Collapse>
       </Container>
     </NavbarBST>

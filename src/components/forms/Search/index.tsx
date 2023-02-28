@@ -16,24 +16,24 @@ const SearchForm: FC<Props> = ({ onSearch }) => {
   useEffect(() => {
     onSearch(fields);
   }, [fields]);
-  console.log(fields);
 
   return (
-    <Form className="d-flex">
-      <Form.Control
-        type="search"
-        value={fields.query}
-        placeholder="Tu Búsqueda"
-        className="me-2"
-        aria-label="Search"
-        onChange={(e) =>
-          setFields((prevState) => ({ ...prevState, query: e.target.value }))
-        }
-      />
-      <NavLink className="nav-link" to="/search">
-        <Button variant="outline-dark">Buscar</Button>
-      </NavLink>
-    </Form>
+    <NavLink className="nav-link" to="/search">
+      <Form className="d-flex">
+        <Form.Control
+          type="search"
+          value={fields.query}
+          placeholder="Tu Búsqueda"
+          className="me-2"
+          aria-label="Search"
+          onChange={(e) =>
+            setFields((prevState) => ({ ...prevState, query: e.target.value }))
+          }
+        />
+
+        <Button variant="outline-light">Buscar</Button>
+      </Form>
+    </NavLink>
   );
 };
 

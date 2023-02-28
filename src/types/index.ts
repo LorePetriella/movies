@@ -17,8 +17,8 @@ export type LoginForm = {
 };
 
 export type SearchForm = {
-  query: string;
-  page?: string;
+  query: string | null;
+  page?: string | null;
 };
 
 export type Movie = {
