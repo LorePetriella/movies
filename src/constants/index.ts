@@ -10,4 +10,6 @@ const poster_sizes = [
   "original",
 ];
 
-export { BASE_IMG, poster_sizes };
+const backdrop_sizes = ["w300", "w780", "w1280", "original"];
+
+export { BASE_IMG, poster_sizes, backdrop_sizes };

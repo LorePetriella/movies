@@ -1,13 +1,7 @@
-import {
-  Button,
-  Container,
-  Form,
-  Nav,
-  Navbar as NavbarBST,
-  // NavLink as NavLinkBST,
-} from "react-bootstrap";
+import { Container, Nav, Navbar as NavbarBST } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useMe } from "../../../hooks";
+import { SearchForm } from "../../forms/Search";
 
 const MainNavbar = () => {
   const { logout } = useMe();
@@ -26,7 +20,7 @@ const MainNavbar = () => {
             <NavLink className="nav-link" to="/">
               Home
             </NavLink>
-            <NavLink className="nav-link" to="/popular">
+            <NavLink className="nav-link" to="/populares">
               Populares
             </NavLink>
             <NavLink className="nav-link" to="/upcoming">
@@ -40,15 +34,8 @@ const MainNavbar = () => {
               Registro
             </NavLink>
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Tu Búsqueda"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-dark">Buscar</Button>
-          </Form>
+
+          <SearchForm onSearch={() => {}} />
         </NavbarBST.Collapse>
       </Container>
     </NavbarBST>
