@@ -37,6 +37,9 @@ const MainNavbar = () => {
             <NavLink className="nav-link" to="/signup">
               Registro
             </NavLink>
+            <NavLink className="nav-link" to="/details">
+              Detalles
+            </NavLink>
           </Nav>
 
           <SearchForm onSearch={setSearchQuery} />

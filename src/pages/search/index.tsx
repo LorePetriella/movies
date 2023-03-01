@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Movie } from "../../types";
 import { useSearchParams } from "react-router-dom";
 import { servicesMovies } from "../../services/movies";
-import "./styles.scss";
+
 import { Col, Container, Row } from "react-bootstrap";
 import { MovieCard } from "../../components/common/card";
 import { BASE_IMG } from "../../constants";
