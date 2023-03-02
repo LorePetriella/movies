@@ -1,4 +1,4 @@
-import { Layout, MovieCard } from "../../components";
+import { Layout, MovieCard, PageSelector } from "../../components";
 import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
@@ -17,7 +17,7 @@ const PopularPage = () => {
 
   return (
     <Layout>
-      <Container fluid className="p-4">
+      <Container className="p-4">
         <h2 className="text-center">Películas Populares</h2>
         <Row>
           {movies &&
@@ -30,6 +30,26 @@ const PopularPage = () => {
                 />
               </Col>
             ))}
+        </Row>
+        <Row className="d-flex justify-content-center ">
+          <Col sm={3}>
+            <PageSelector
+              page={""}
+              totalPages={""}
+              first={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+              next={function (page: string | null): void {
+                throw new Error("Function not implemented.");
+              }}
+              prev={function (page: string | null): void {
+                throw new Error("Function not implemented.");
+              }}
+              last={function (totalPages: string): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          </Col>
         </Row>
       </Container>
     </Layout>
