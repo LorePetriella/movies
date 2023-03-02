@@ -4,34 +4,29 @@ import React, { useEffect, useState } from "react";
 import { Movie } from "../../types";
 import { useSearchParams } from "react-router-dom";
 import { servicesMovies } from "../../services/movies";
-import "./styles.scss";
-import { CardGroup, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { MovieCard } from "../../components/common/card";
-import { BASE_IMG, poster_sizes } from "../../constants";
+import { BASE_IMG } from "../../constants";
 
 const SearchPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    console.log(searchParams.get("query"));
-    // console.log(searchParams.get("page"));
     servicesMovies
-      .search("/search/movie", {
+      .search({
         query: searchParams.get("query" || "" || null),
         // page: searchParams.get("page"),
       })
       .then((data) => {
         setMovies(data.results);
-        console.log(data.results);
       });
   }, [searchParams]);
 
   return (
     <Layout>
-      <Container fluid className="p-4">
+      <Container className="p-4">
         <Row>
-          {/* <CardGroup> */}
           {movies &&
             movies.map((movie) => (
               <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
@@ -40,7 +35,6 @@ const SearchPage = () => {
                   img={`${BASE_IMG}${movie.poster_path}`}
                   id={movie.id}
                 />
-                {/* </CardGroup> */}
               </Col>
             ))}
         </Row>

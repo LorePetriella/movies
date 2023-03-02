@@ -6,11 +6,11 @@ const get = async (endpoint: string) => {
   return response.data;
 };
 
-const search = async (
-  endpoint: string,
-  params: { query: string | null; page?: string | null }
-) => {
-  const response = await apiMovies.get(endpoint, {
+const search = async (params: {
+  query: string | null;
+  page?: string | null;
+}) => {
+  const response = await apiMovies.get("/search/movie", {
     params,
   });
   return response.data;
