@@ -14,7 +14,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     servicesMovies
-      .search("/search/movie", {
+      .search({
         query: searchParams.get("query" || "" || null),
         // page: searchParams.get("page"),
       })
@@ -25,7 +25,7 @@ const SearchPage = () => {
 
   return (
     <Layout>
-      <Container fluid className="p-4">
+      <Container className="p-4">
         <Row>
           {movies &&
             movies.map((movie) => (

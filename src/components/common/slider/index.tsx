@@ -10,7 +10,7 @@ type Props = {
 
 const Slider: FC<Props> = ({ movies }) => {
   return (
-    <div className="container-fuid">
+    <div className="container-fluid">
       <Carousel fade>
         {movies.splice(0, 10).map((movie) => (
           <Carousel.Item key={movie.id}>
