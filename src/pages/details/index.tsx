@@ -13,9 +13,7 @@ const DetailsPage = () => {
 
   useEffect(() => {
     if (id) {
-      console.log(id);
       servicesMovies.getById(id).then((data) => setDetails(data));
-      console.log(detail);
     }
   }, []);
   return (
