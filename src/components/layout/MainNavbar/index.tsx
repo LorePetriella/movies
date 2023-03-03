@@ -21,23 +21,30 @@ const MainNavbar = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <NavLink className="nav-link" to="/">
-              Home
-            </NavLink>
-            <NavLink className="nav-link" to="/populares">
-              Populares
-            </NavLink>
-            <NavLink className="nav-link" to="/upcoming">
-              Últimos Lanzamientos
-            </NavLink>
-            <Nav.Link onClick={logout}>Cerrar sesión</Nav.Link>
-
-            <NavLink className="nav-link" to="/login">
-              Login
-            </NavLink>
-            <NavLink className="nav-link" to="/signup">
-              Registro
-            </NavLink>
+            {me && (
+              <>
+                <NavLink className="nav-link" to="/">
+                  Home
+                </NavLink>
+                <NavLink className="nav-link" to="/populares">
+                  Populares
+                </NavLink>
+                <NavLink className="nav-link" to="/upcoming">
+                  Últimos Lanzamientos
+                </NavLink>
+                <Nav.Link onClick={logout}>Cerrar sesión</Nav.Link>
+              </>
+            )}
+            {!me && (
+              <>
+                <NavLink className="nav-link" to="/login">
+                  Login
+                </NavLink>
+                <NavLink className="nav-link" to="/signup">
+                  Registro
+                </NavLink>
+              </>
+            )}
           </Nav>
 
           <SearchForm onSearch={setSearchQuery} />
