@@ -10,9 +10,10 @@ type Props = {
   title: string;
   img: string;
   id?: number;
+  label: string;
 };
 
-const MovieCard: FC<Props> = ({ title, img, id }) => {
+const MovieCard: FC<Props> = ({ title, img, id, label }) => {
   // const navigate = useNavigate();
   return (
     <Card style={{ width: "18rem" }}>
@@ -23,7 +24,7 @@ const MovieCard: FC<Props> = ({ title, img, id }) => {
         <CustomButton
           variant={"dark"}
           onClick={() => `/movies/${id}`}
-          label={"Más Info"}
+          label={label}
         ></CustomButton>
       </Card.Body>
     </Card>

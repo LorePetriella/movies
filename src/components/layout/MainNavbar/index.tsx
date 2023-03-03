@@ -5,7 +5,7 @@ import { FormField } from "../../../types";
 import { SearchForm } from "../../forms/Search";
 
 const MainNavbar = () => {
-  const { logout } = useMe();
+  const { logout, me } = useMe();
   const [seachParams, setSearchParams] = useSearchParams();
   const setSearchQuery = (params: FormField) => {
     setSearchParams(params);
@@ -31,14 +31,12 @@ const MainNavbar = () => {
               Últimos Lanzamientos
             </NavLink>
             <Nav.Link onClick={logout}>Cerrar sesión</Nav.Link>
+
             <NavLink className="nav-link" to="/login">
               Login
             </NavLink>
             <NavLink className="nav-link" to="/signup">
               Registro
-            </NavLink>
-            <NavLink className="nav-link" to="/details">
-              Detalles
             </NavLink>
           </Nav>
 

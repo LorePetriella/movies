@@ -1,31 +1,49 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
+import { useSearchParams } from "react-router-dom";
 
 type Props = {
   page: string;
   totalPages: string;
-  first: () => void;
-  next: (page: string | null) => void;
-  prev: (page: string | null) => void;
-  last: (totalPages: string) => void;
 };
 
-const PageSelector: FC<Props> = ({
-  page,
-  totalPages,
-  first,
-  next,
-  prev,
-  last,
-}) => {
+const PageSelector: FC<Props> = ({ page, totalPages }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const first = () => {
+    setSearchParams({ page: "1" });
+  };
+  const prev = () => {
+    let numberPage = Number(page) - 1;
+    let stringPage = numberPage.toString();
+    setSearchParams({ page: stringPage });
+  };
+  const next = () => {
+    let numberPage = Number(page) + 1;
+    let stringPage = numberPage.toString();
+    setSearchParams({ page: stringPage });
+  };
+  const last = () => {
+    let lastPage = totalPages;
+
+    setSearchParams({ page: lastPage || "500" });
+  };
+
+  useEffect(() => {}, [searchParams]);
+
   return (
     <Pagination>
-      <Pagination.First active={page === "1"} />
-      <Pagination.Prev disabled={page === "1"} />
-      <Pagination.Item>{1}</Pagination.Item>
-
-      <Pagination.Next />
-      <Pagination.Last />
+      <Pagination.First onClick={() => first()} active={page == "1"} />
+      <Pagination.Prev onClick={() => prev()} disabled={page == "1"} />
+      <Pagination.Item>{page}</Pagination.Item>
+      <Pagination.Next
+        onClick={() => next()}
+        disabled={page == totalPages || page == "500"}
+      />
+      <Pagination.Last
+        onClick={() => last()}
+        disabled={page == totalPages || page == "500"}
+      />
     </Pagination>
   );
 };

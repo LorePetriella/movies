@@ -9,12 +9,19 @@ import { useSearchParams } from "react-router-dom";
 
 const PopularPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [page, setPage] = useState("");
+  const [totalPages, setTotalPages] = useState("");
+
   const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
-    servicesMovies
-      .get("/movie/popular")
-      .then((data) => setMovies(data.results));
-  }, []);
+    const page1 = searchParams.get("page");
+
+    servicesMovies.get("/movie/popular", page1 || "1").then((data) => {
+      setMovies(data.results);
+      setPage(data.page);
+      setTotalPages(data.total_pages);
+    });
+  }, [searchParams]);
 
   return (
     <Layout>
@@ -28,28 +35,14 @@ const PopularPage = () => {
                   title={movie.title}
                   img={`${BASE_IMG}${movie.poster_path}`}
                   id={movie.id}
+                  label={"Más Info"}
                 />
               </Col>
             ))}
         </Row>
         <Row className="d-flex justify-content-center ">
           <Col sm={3}>
-            <PageSelector
-              page={""}
-              totalPages={""}
-              first={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-              next={function (page: string | null): void {
-                throw new Error("Function not implemented.");
-              }}
-              prev={function (page: string | null): void {
-                throw new Error("Function not implemented.");
-              }}
-              last={function (totalPages: string): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
+            <PageSelector page={page} totalPages={totalPages} />
           </Col>
         </Row>
       </Container>

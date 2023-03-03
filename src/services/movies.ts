@@ -1,7 +1,11 @@
 import { apiMovies } from "../utils/axios";
 
 const get = async (endpoint: string, page?: string) => {
-  const response = await apiMovies.get(endpoint);
+  const response = await apiMovies.get(endpoint, {
+    params: {
+      page: page,
+    },
+  });
 
   return response.data;
 };
@@ -16,4 +20,9 @@ const search = async (params: {
   return response.data;
 };
 
-export const servicesMovies = { get, search };
+const getById = async (id: string) => {
+  const response = await apiMovies.get(`movie/${id}`);
+
+  return response.data;
+};
+export const servicesMovies = { get, search, getById };
