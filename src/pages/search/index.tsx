@@ -1,22 +1,44 @@
-import { Button } from "react-bootstrap";
-import { Form } from "react-bootstrap";
 import { Layout } from "../../components";
 import { withAuth } from "../../hoc";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Movie } from "../../types";
+import { useSearchParams } from "react-router-dom";
+import { servicesMovies } from "../../services/movies";
+import { Col, Container, Row } from "react-bootstrap";
+import { MovieCard } from "../../components/common/card";
+import { BASE_IMG } from "../../constants";
 
 const SearchPage = () => {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    servicesMovies
+      .search({
+        query: searchParams.get("query" || "" || null),
+        // page: searchParams.get("page"),
+      })
+      .then((data) => {
+        setMovies(data.results);
+      });
+  }, [searchParams]);
+
   return (
     <Layout>
-      Búsqueda
-      {/* <Form className="d-flex">
-        <Form.Control
-          type="search"
-          placeholder="Tu Búsqueda"
-          className="me-2"
-          aria-label="Search"
-        />
-        <Button variant="outline-dark">Buscar</Button>
-      </Form> */}
+      <Container className="p-4">
+        <Row>
+          {movies &&
+            movies.map((movie) => (
+              <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
+                <MovieCard
+                  title={movie.title}
+                  img={`${BASE_IMG}${movie.poster_path}`}
+                  id={movie.id}
+                />
+              </Col>
+            ))}
+        </Row>
+      </Container>
     </Layout>
   );
 };

@@ -16,10 +16,18 @@ export type LoginForm = {
   pass: string;
 };
 
+export type SearchForm = {
+  query: string | null;
+  page?: string | null;
+};
+
 export type Movie = {
   title: string;
   id: number;
   poster_path: string;
   overview: string;
   backdrop_path?: string | null;
+};
+export type FormField = {
+  query: string;
 };

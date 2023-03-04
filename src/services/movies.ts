@@ -6,4 +6,14 @@ const get = async (endpoint: string) => {
   return response.data;
 };
 
-export const servicesMovies = { get };
+const search = async (params: {
+  query: string | null;
+  page?: string | null;
+}) => {
+  const response = await apiMovies.get("/search/movie", {
+    params,
+  });
+  return response.data;
+};
+
+export const servicesMovies = { get, search };

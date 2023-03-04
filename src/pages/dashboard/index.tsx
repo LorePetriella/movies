@@ -1,5 +1,4 @@
 import { Gallery, Layout, Slider } from "../../components";
-
 import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
 import { servicesMovies } from "../../services/movies";
@@ -9,6 +8,7 @@ const DashboardPage = () => {
   const [nowPlaying, setnowPlaying] = useState<Movie[]>([]);
 
   const [popular, setPopular] = useState<Movie[]>([]);
+
   const [topRated, settopRated] = useState<Movie[]>([]);
 
   useEffect(() => {
@@ -28,6 +28,7 @@ const DashboardPage = () => {
   return (
     <Layout>
       <Slider movies={nowPlaying} />
+
       <Gallery movies={popular} section={"Populares"} />
       <Gallery movies={topRated} section={"Las más votadas"} />
     </Layout>
