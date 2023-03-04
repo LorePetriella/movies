@@ -1,5 +1,4 @@
 import { Gallery, Layout, Slider } from "../../components";
-
 import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
 import { servicesMovies } from "../../services/movies";
