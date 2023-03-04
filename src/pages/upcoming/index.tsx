@@ -1,5 +1,6 @@
 import { Layout, MovieCard } from "../../components";
 import { withAuth } from "../../hoc";
+
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { BASE_IMG } from "../../constants";

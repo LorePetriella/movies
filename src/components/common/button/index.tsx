@@ -7,9 +7,10 @@ type Props = {
   variant: string;
   onClick: () => string;
   label: string;
+  id?: number;
 };
 
-const CustomButton: FC<Props> = ({ variant, onClick, label }) => {
+const CustomButton: FC<Props> = ({ variant, onClick, label, id }) => {
   const navigate = useNavigate();
   return (
     <Button variant={variant} onClick={() => navigate(onClick())}>
