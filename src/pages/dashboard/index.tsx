@@ -1,4 +1,4 @@
-import { CustomModal, Gallery, Layout, Slider } from "../../components";
+import { Gallery, Layout, Slider } from "../../components";
 import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
 import { servicesMovies } from "../../services/movies";
@@ -31,7 +31,6 @@ const DashboardPage = () => {
 
       <Gallery movies={popular} section={"Populares"} />
       <Gallery movies={topRated} section={"Las más votadas"} />
-      <CustomModal />
     </Layout>
   );
 };

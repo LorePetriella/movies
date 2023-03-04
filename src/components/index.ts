@@ -6,6 +6,5 @@ export {
   MovieCard,
   CustomButton,
   PageSelector,
-  CustomModal,
-  Player,
+  ErrorModal,
 } from "./common";

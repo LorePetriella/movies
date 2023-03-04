@@ -5,3 +5,4 @@ export { Search } from "./search";
 export { Signup } from "./signup";
 export { Upcoming } from "./upcoming";
 export { Details } from "./details";
+export { Trailer } from "./trailers";

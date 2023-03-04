@@ -6,7 +6,7 @@ import { SearchForm } from "../../forms/Search";
 
 const MainNavbar = () => {
   const { logout, me } = useMe();
-  const [seachParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const setSearchQuery = (params: FormField) => {
     setSearchParams(params);
   };

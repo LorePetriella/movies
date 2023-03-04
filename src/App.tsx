@@ -7,6 +7,7 @@ import {
   Popular,
   Upcoming,
   Details,
+  Trailer,
 } from "./pages";
 import React, { useEffect } from "react";
 import { useMe } from "./hooks";
@@ -29,6 +30,7 @@ function App() {
           <Route path="populares" element={<Popular />} />
           <Route path="movies/:id" element={<Details />} />
           <Route path="upcoming" element={<Upcoming />} />
+          <Route path="movies/:id/videos" element={<Trailer />} />
         </Route>
       </Routes>
     </BrowserRouter>
