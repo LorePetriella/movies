@@ -1,11 +1,24 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { Dashboard, Login, Signup, Search, Popular, Upcoming } from "./pages";
+import {
+  Dashboard,
+  Login,
+  Signup,
+  Search,
+  Popular,
+  Upcoming,
+  Details,
+  Trailer,
+} from "./pages";
 import React, { useEffect } from "react";
 import { useMe } from "./hooks";
-function App() {
-  const { me } = useMe();
 
-  useEffect(() => {}, [me]);
+function App() {
+  const { loginWithToken } = useMe();
+
+  useEffect(() => {
+    loginWithToken();
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -15,7 +28,9 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="search" element={<Search />} />
           <Route path="populares" element={<Popular />} />
+          <Route path="movies/:id" element={<Details />} />
           <Route path="upcoming" element={<Upcoming />} />
+          <Route path="movies/:id/videos" element={<Trailer />} />
         </Route>
       </Routes>
     </BrowserRouter>
