@@ -16,16 +16,15 @@ const PopularPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState("");
   const [totalPages, setTotalPages] = useState("");
-
   const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
-    const page1 = searchParams.get("page");
-
-    servicesMovies.get("/movie/popular", page1 || "1").then((data) => {
-      setMovies(data.results);
-      setPage(data.page);
-      setTotalPages(data.total_pages);
-    });
+    servicesMovies
+      .getPopular({ page: searchParams.get("page") || "1" })
+      .then((data) => {
+        setMovies(data.results);
+        setPage(data.page);
+        setTotalPages(data.total_pages);
+      });
   }, [searchParams]);
 
   return (
