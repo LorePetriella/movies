@@ -23,8 +23,10 @@ const UpcomingPage = () => {
       .getUpcoming({ page: searchParams.get("page") || "1" })
       .then((data) => {
         setMovies(data.results);
+        setPage(data.page);
+        setTotalPages(data.total_pages);
       });
-  }, []);
+  }, [searchParams]);
 
   return (
     <Layout>
