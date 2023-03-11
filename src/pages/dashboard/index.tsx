@@ -3,6 +3,7 @@ import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
 import { servicesMovies } from "../../services/movies";
 import { Movie } from "../../types";
+import { useSearchParams } from "react-router-dom";
 
 const DashboardPage = () => {
   const [nowPlaying, setnowPlaying] = useState<Movie[]>([]);
@@ -11,18 +12,20 @@ const DashboardPage = () => {
 
   const [topRated, settopRated] = useState<Movie[]>([]);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
-    servicesMovies
-      .get("/movie/now_playing")
-      .then((data) => setnowPlaying(data.results));
+    servicesMovies.getNowPlaying().then((data) => {
+      setnowPlaying(data.results);
+    });
 
     servicesMovies
-      .get("/movie/popular")
-      .then((data) => setPopular(data.results));
+      .getPopular({ page: searchParams.get("page") || "1" })
+      .then((data) => {
+        setPopular(data.results);
+      });
 
-    servicesMovies
-      .get("/movie/top_rated")
-      .then((data) => settopRated(data.results));
+    servicesMovies.getTopRated().then((data) => settopRated(data.results));
   }, []);
 
   return (
