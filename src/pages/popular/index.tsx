@@ -6,7 +6,6 @@ import { BASE_IMG } from "../../constants";
 import { Movie } from "../../types";
 import { servicesMovies } from "../../services/movies";
 import { useSearchParams } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
 
 const PopularPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
