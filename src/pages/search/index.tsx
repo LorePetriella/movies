@@ -7,6 +7,7 @@ import { servicesMovies } from "../../services/movies";
 import { Col, Container, Row } from "react-bootstrap";
 import { MovieCard } from "../../components/common/card";
 import { BASE_IMG } from "../../constants";
+import "./styles.scss";
 
 const SearchPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);

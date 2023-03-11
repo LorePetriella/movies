@@ -5,14 +5,18 @@ import { Col, Container, Row } from "react-bootstrap";
 import { BASE_IMG } from "../../constants";
 import { Movie } from "../../types";
 import { servicesMovies } from "../../services/movies";
+import { useSearchParams } from "react-router-dom";
 
 const UpcomingPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     servicesMovies
-      .get("/movie/upcoming")
-      .then((data) => setMovies(data.results));
+      .getUpcoming({ page: searchParams.get("page") || "1" })
+      .then((data) => {
+        setMovies(data.results);
+      });
   }, []);
 
   return (
