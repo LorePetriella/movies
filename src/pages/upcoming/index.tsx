@@ -19,13 +19,12 @@ const UpcomingPage = () => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    const page1 = searchParams.get("page");
-    servicesMovies.get("/movie/upcoming", page1 || "1").then((data) => {
-      setMovies(data.results);
-      setPage(data.page);
-      setTotalPages(data.total_pages);
-    });
-  }, [searchParams]);
+    servicesMovies
+      .getUpcoming({ page: searchParams.get("page") || "1" })
+      .then((data) => {
+        setMovies(data.results);
+      });
+  }, []);
 
   return (
     <Layout>
