@@ -22,6 +22,7 @@ const PopularPage = () => {
       });
   }, [searchParams]);
 
+
   return (
     <Layout>
       <Container fluid className="p-4">
