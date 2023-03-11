@@ -24,7 +24,7 @@ const MainNavbar = () => {
             <NavLink className="nav-link" to="/">
               Home
             </NavLink>
-            <NavLink className="nav-link" to="populares">
+            <NavLink className="nav-link" to="/populares">
               Populares
             </NavLink>
             <NavLink className="nav-link" to="/upcoming">
