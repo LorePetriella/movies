@@ -1,15 +1,10 @@
 import { Container, Nav, Navbar as NavbarBST } from "react-bootstrap";
-import { NavLink, useSearchParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useMe } from "../../../hooks";
-import { FormField } from "../../../types";
-import { SearchForm } from "../../forms/Search";
 
 const MainNavbar = () => {
   const { logout, me } = useMe();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const setSearchQuery = (params: FormField) => {
-    setSearchParams(params);
-  };
+
   return (
     <NavbarBST bg="dark" variant="dark" expand="lg">
       <Container fluid>
@@ -30,7 +25,10 @@ const MainNavbar = () => {
                   Populares
                 </NavLink>
                 <NavLink className="nav-link" to="/upcoming">
-                  Últimos Lanzamientos
+                  Próximamente
+                </NavLink>
+                <NavLink className="nav-link" to="/search">
+                  Buscador
                 </NavLink>
                 <Nav.Link onClick={logout}>Cerrar sesión</Nav.Link>
               </>
@@ -46,8 +44,6 @@ const MainNavbar = () => {
               </>
             )}
           </Nav>
-
-          <SearchForm onSearch={setSearchQuery} />
         </NavbarBST.Collapse>
       </Container>
     </NavbarBST>

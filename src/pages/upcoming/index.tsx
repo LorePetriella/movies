@@ -51,7 +51,13 @@ const UpcomingPage = () => {
         </Row>
         <Row className="d-flex justify-content-center ">
           <Col sm={3}>
-            <PageSelector page={page} totalPages={totalPages} />
+            <PageSelector
+              page={page}
+              totalPages={totalPages}
+              onClick={function (page: string): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
           </Col>
         </Row>
       </Container>
