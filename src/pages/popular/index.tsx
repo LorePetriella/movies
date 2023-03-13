@@ -17,6 +17,7 @@ const PopularPage = () => {
   const [page, setPage] = useState("");
   const [totalPages, setTotalPages] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
     servicesMovies
       .getPopular({ page: searchParams.get("page") || "1" })
@@ -50,11 +51,7 @@ const PopularPage = () => {
         </Row>
         <Row className="d-flex justify-content-center ">
           <Col sm={3}>
-            <PageSelector
-              page={page}
-              totalPages={totalPages}
-              onClick={() => {}}
-            />
+            <PageSelector page={page} totalPages={totalPages} />
           </Col>
         </Row>
       </Container>

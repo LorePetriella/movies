@@ -14,7 +14,11 @@ const SearchPage = () => {
   const [page, setPage] = useState("1");
   const [totalPages, setTotalPages] = useState("");
   const [params, setParams] = useState({ query: "", page: "1" });
-  const [searchParams, setSearchParams] = useSearchParams(params);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    setSearchParams(params);
+  }, [params]);
 
   useEffect(() => {
     const query = searchParams.get("query");
@@ -32,19 +36,16 @@ const SearchPage = () => {
   }, [searchParams]);
 
   const setSearchQuery = (param: FormField) => {
-    setSearchParams(params);
     setParams((prevState) => ({ ...prevState, query: param.query }));
-    console.log(params);
   };
   const setPageQuery = (page: string) => {
-    setSearchParams(params);
     setParams((prevState) => ({ ...prevState, page: page }));
-    console.log(params);
   };
 
   return (
     <Layout>
       <SearchForm onSearch={setSearchQuery} />
+
       <Container className="p-4">
         <Row>
           {movies &&
