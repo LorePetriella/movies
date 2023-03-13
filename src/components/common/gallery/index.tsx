@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Col, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { BASE_IMG } from "../../../constants";
 import { Movie } from "../../../types";
 import "./styles.scss";
