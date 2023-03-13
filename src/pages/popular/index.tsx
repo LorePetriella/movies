@@ -17,7 +17,6 @@ const PopularPage = () => {
   const [page, setPage] = useState("");
   const [totalPages, setTotalPages] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
-
   useEffect(() => {
     servicesMovies
       .getPopular({ page: searchParams.get("page") || "1" })

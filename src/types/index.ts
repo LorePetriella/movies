@@ -27,22 +27,18 @@ export type Movie = {
   poster_path: string;
   overview: string;
   backdrop_path?: string | null;
-};
-export type FormField = {
-  query: string;
-};
-export type SectionDetails = {
-  title: string;
-  id: number;
   budget: string;
-  overview: string;
-  backdrop_path: string | null;
-  poster_path: string;
   homepage: string;
   release_date: string;
   vote_count: number;
   production_companies: Companies[];
 };
+export type FormField = {
+  query: string;
+};
+// export type SectionDetails = {
+
+// };
 
 export type Companies = {
   name: string;
