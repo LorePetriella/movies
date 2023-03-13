@@ -7,6 +7,7 @@ type Props = {
   variant: string;
   onClick: () => string;
   label: string;
+  id?: number;
 };
 
 const CustomButton: FC<Props> = ({ variant, onClick, label }) => {

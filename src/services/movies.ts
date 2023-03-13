@@ -28,12 +28,12 @@ const getUpcoming = async (params: { page?: string }) => {
   return response.data;
 };
 
-const search = async (params: {
-  query: string | null;
-  page?: string | null;
-}) => {
-  const response = await apiMovies.get("/search/movie", {
-    params,
+const search = async (query: string | null, page: string | null = "1") => {
+  const response = await apiMovies.get("search/movie", {
+    params: {
+      query: query,
+      page: page,
+    },
   });
   return response.data;
 };
