@@ -12,11 +12,11 @@ import React, { useEffect } from "react";
 import { useMe } from "./hooks";
 
 function App() {
-  const { me } = useMe();
+  const { loginWithToken } = useMe();
 
   useEffect(() => {
-    console.log(me);
-  }, [me]);
+    loginWithToken();
+  }, []);
 
   return (
     <BrowserRouter>
@@ -27,7 +27,7 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="search" element={<Search />} />
           <Route path="populares" element={<Popular />} />
-          <Route path="details" element={<Details />} />
+          <Route path="movies/:id" element={<Details />} />
           <Route path="upcoming" element={<Upcoming />} />
         </Route>
       </Routes>

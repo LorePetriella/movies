@@ -31,6 +31,7 @@ const UpcomingPage = () => {
                   title={movie.title}
                   img={`${BASE_IMG}${movie.poster_path}`}
                   id={movie.id}
+                  label={"Más Info"}
                 />
               </Col>
             ))}

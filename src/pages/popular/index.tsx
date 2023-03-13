@@ -1,4 +1,4 @@
-import { Layout, MovieCard } from "../../components";
+import { Layout, MovieCard, PageSelector } from "../../components";
 import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
@@ -22,10 +22,9 @@ const PopularPage = () => {
       });
   }, [searchParams]);
 
-
   return (
     <Layout>
-      <Container fluid className="p-4">
+      <Container className="p-4">
         <h2 className="text-center">Películas Populares</h2>
         <Row>
           {movies &&
@@ -35,9 +34,15 @@ const PopularPage = () => {
                   title={movie.title}
                   img={`${BASE_IMG}${movie.poster_path}`}
                   id={movie.id}
+                  label={"Más Info"}
                 />
               </Col>
             ))}
+        </Row>
+        <Row className="d-flex justify-content-center ">
+          <Col sm={3}>
+            <PageSelector page={page} totalPages={totalPages} />
+          </Col>
         </Row>
       </Container>
     </Layout>
