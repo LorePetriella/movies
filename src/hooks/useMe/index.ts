@@ -25,8 +25,9 @@ const useMe = () => {
   const loginWithToken = async () => {
     const sessiontoken = localStorage.getItem("sessiontoken");
 
-    if (sessiontoken && me !== undefined) {
+    if (sessiontoken && !me) {
       const user = await servicesUser.getBy(sessiontoken, "sessiontoken");
+      console.log(sessiontoken, me, user);
 
       if (user) {
         setMe({

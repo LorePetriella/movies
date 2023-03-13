@@ -1,4 +1,4 @@
-import { Layout } from "../../components";
+import { CustomButton, Layout } from "../../components";
 import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
 import { Movie } from "../../types";
@@ -7,7 +7,6 @@ import { servicesMovies } from "../../services/movies";
 import { Col, Container, Row } from "react-bootstrap";
 import { MovieCard } from "../../components/common/card";
 import { BASE_IMG } from "../../constants";
-import "./styles.scss";
 
 const SearchPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -34,8 +33,13 @@ const SearchPage = () => {
                 <MovieCard
                   title={movie.title}
                   img={`${BASE_IMG}${movie.poster_path}`}
-                  id={movie.id}
-                />
+                >
+                  <CustomButton
+                    variant={"dark"}
+                    onClick={() => `/movies/${Number(movie.id)}`}
+                    label={"Más Info"}
+                  ></CustomButton>
+                </MovieCard>
               </Col>
             ))}
         </Row>

@@ -1,4 +1,9 @@
-import { Layout, MovieCard } from "../../components";
+import {
+  CustomButton,
+  Layout,
+  MovieCard,
+  PageSelector,
+} from "../../components";
 import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
@@ -12,6 +17,7 @@ const PopularPage = () => {
   const [page, setPage] = useState("");
   const [totalPages, setTotalPages] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
     servicesMovies
       .getPopular({ page: searchParams.get("page") || "1" })
@@ -22,10 +28,9 @@ const PopularPage = () => {
       });
   }, [searchParams]);
 
-
   return (
     <Layout>
-      <Container fluid className="p-4">
+      <Container className="p-4">
         <h2 className="text-center">Películas Populares</h2>
         <Row>
           {movies &&
@@ -34,10 +39,20 @@ const PopularPage = () => {
                 <MovieCard
                   title={movie.title}
                   img={`${BASE_IMG}${movie.poster_path}`}
-                  id={movie.id}
-                />
+                >
+                  <CustomButton
+                    variant={"dark"}
+                    onClick={() => `/movies/${Number(movie.id)}`}
+                    label={"Más Info"}
+                  ></CustomButton>
+                </MovieCard>
               </Col>
             ))}
+        </Row>
+        <Row className="d-flex justify-content-center ">
+          <Col sm={3}>
+            <PageSelector page={page} totalPages={totalPages} />
+          </Col>
         </Row>
       </Container>
     </Layout>
