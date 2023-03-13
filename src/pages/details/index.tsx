@@ -5,10 +5,10 @@ import { Layout, MovieCard } from "../../components";
 import { BASE_IMG } from "../../constants";
 import { withAuth } from "../../hoc";
 import { servicesMovies } from "../../services/movies";
-import { SectionDetails } from "../../types";
+import { Movie } from "../../types";
 
 const DetailsPage = () => {
-  const [detail, setDetails] = useState<SectionDetails>();
+  const [detail, setDetails] = useState<Movie>();
   const { id } = useParams();
 
   useEffect(() => {
