@@ -1,7 +1,7 @@
 import { CustomButton, Layout, PageSelector } from "../../components";
 import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
-import { Movie, TitleSearch } from "../../types";
+import { FormField, Movie } from "../../types";
 import { useSearchParams } from "react-router-dom";
 import { servicesMovies } from "../../services/movies";
 import { Col, Container, Row } from "react-bootstrap";
@@ -29,9 +29,9 @@ const SearchPage = () => {
         setTotalPages(data.total_pages);
         setPage(data.page);
       });
-  }, [params, page]);
+  }, [searchParams]);
 
-  const setSearchQuery = (param: TitleSearch) => {
+  const setSearchQuery = (param: FormField) => {
     setSearchParams(params);
     setParams((prevState) => ({ ...prevState, query: param.query }));
     console.log(params);

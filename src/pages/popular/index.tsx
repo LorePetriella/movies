@@ -54,9 +54,7 @@ const PopularPage = () => {
             <PageSelector
               page={page}
               totalPages={totalPages}
-              onClick={function (page: string): void {
-                throw new Error("Function not implemented.");
-              }}
+              onClick={() => {}}
             />
           </Col>
         </Row>

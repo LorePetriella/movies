@@ -1,14 +1,14 @@
 import { FC, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { FormField, TitleSearch } from "../../../types";
+import { FormField } from "../../../types";
 
 const defaultValue: FormField = {
   query: "",
 };
 
 type Props = {
-  onSearch: (params: TitleSearch | FormField) => void;
+  onSearch: (params: FormField) => void;
 };
 
 const SearchForm: FC<Props> = ({ onSearch }) => {

@@ -47,7 +47,3 @@ export type SectionDetails = {
 export type Companies = {
   name: string;
 };
-
-export type TitleSearch = {
-  query: string;
-};
