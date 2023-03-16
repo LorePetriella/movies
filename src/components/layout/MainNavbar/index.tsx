@@ -21,7 +21,9 @@ const MainNavbar = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            {me && (
+
+            {me ? (
+
               <>
                 <NavLink className="nav-link" to="/">
                   Home
@@ -34,8 +36,9 @@ const MainNavbar = () => {
                 </NavLink>
                 <Nav.Link onClick={logout}>Cerrar sesión</Nav.Link>
               </>
-            )}
-            {!me && (
+
+            ) : (
+
               <>
                 <NavLink className="nav-link" to="/login">
                   Login
