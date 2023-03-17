@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ErrorModal, Layout } from "../../components";
+import { Layout } from "../../components";
 import { withAuth } from "../../hoc";
 import { servicesMovies } from "../../services/movies";
 import "./styles.scss";
 import YouTube from "react-youtube";
+import { CustomModal } from "../../components/common";
 
 type TrailerProps = {
   key: string;
@@ -15,6 +16,8 @@ const TrailerPage = () => {
   const { id } = useParams();
 
   const [trailer, setTrailer] = useState<TrailerProps>();
+
+  const [isOpenModal, setIsOpenModal] = useState(true);
 
   useEffect(() => {
     if (id) {
@@ -61,7 +64,11 @@ const TrailerPage = () => {
           />
         </>
       ) : (
-        <ErrorModal />
+        <CustomModal
+          show={isOpenModal}
+          onClose={() => setIsOpenModal(false)}
+          msg={"Lo sentimos, el trailer no está disponible"}
+        />
       )}
     </Layout>
   );

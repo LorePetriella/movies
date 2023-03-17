@@ -1,25 +1,43 @@
-import React, { FC, useState } from "react";
-import Button from "react-bootstrap/Button";
+import React, { FC } from "react";
+import { Button } from "react-bootstrap";
+
 import Modal from "react-bootstrap/Modal";
+import { useNavigate } from "react-router-dom";
 
-const ErrorModal = () => {
-  const [show, setShow] = useState(false);
+type Props = {
+  msg: string;
+  show: boolean;
+  onClose: () => void;
+};
 
-  const handleClose = () => setShow(false);
+const CustomModal: FC<Props> = ({ msg, show, onClose }) => {
+  const navigate = useNavigate();
+
+  const handleClose = () => {
+    onClose();
+    navigate(-1);
+  };
 
   return (
-    <>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body className="text-center">Trailer no disponible</Modal.Body>
+    <div
+      className="modal show"
+      style={{ display: show ? "block" : "none", position: "initial" }}
+    >
+      <Modal.Dialog>
+        <Modal.Header>
+          <Modal.Title>Trailer Status</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body className="text-center">{msg}</Modal.Body>
+
         <Modal.Footer>
           <Button variant="dark" onClick={handleClose}>
-            Cerrar
+            Close
           </Button>
         </Modal.Footer>
-      </Modal>
-    </>
+      </Modal.Dialog>
+    </div>
   );
 };
 
-export { ErrorModal };
+export { CustomModal };
