@@ -1,4 +1,4 @@
-import { Gallery, Layout, Slider } from "../../components";
+import { CustomModal, Gallery, Layout, Slider } from "../../components";
 import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
 import { servicesMovies } from "../../services/movies";
@@ -11,7 +11,6 @@ const DashboardPage = () => {
   const [popular, setPopular] = useState<Movie[]>([]);
 
   const [topRated, settopRated] = useState<Movie[]>([]);
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
