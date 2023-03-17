@@ -6,7 +6,7 @@ import { SearchForm } from "../../forms/Search";
 
 const MainNavbar = () => {
   const { logout, me } = useMe();
-  const [seachParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const setSearchQuery = (params: FormField) => {
     setSearchParams(params);
   };
@@ -21,7 +21,9 @@ const MainNavbar = () => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
+
             {me ? (
+
               <>
                 <NavLink className="nav-link" to="/">
                   Home
@@ -34,7 +36,9 @@ const MainNavbar = () => {
                 </NavLink>
                 <Nav.Link onClick={logout}>Cerrar sesión</Nav.Link>
               </>
+
             ) : (
+
               <>
                 <NavLink className="nav-link" to="/login">
                   Login

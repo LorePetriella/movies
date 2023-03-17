@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import { Layout, MovieCard } from "../../components";
+import { useNavigate, useParams } from "react-router-dom";
+import { CustomButton, Layout, MovieCard } from "../../components";
 import { BASE_IMG } from "../../constants";
 import { withAuth } from "../../hoc";
 import { servicesMovies } from "../../services/movies";
@@ -10,6 +10,7 @@ import { Movie } from "../../types";
 const DetailsPage = () => {
   const [detail, setDetails] = useState<Movie>();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -25,16 +26,18 @@ const DetailsPage = () => {
           backgroundImage: `url(${BASE_IMG}${detail?.backdrop_path})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          height: "100vh",
         }}
       >
         <Row>
           <Col>
-            <MovieCard
-              title={""}
-              img={`${BASE_IMG}${detail?.poster_path}`}
-              id={Number(`${id}`)}
-              label={"Trailer"}
-            />
+            <MovieCard title={""} img={`${BASE_IMG}${detail?.poster_path}`}>
+              <CustomButton
+                variant={"dark"}
+                onClick={() => `/movies/${Number(detail?.id)}/videos`}
+                label={"Trailer"}
+              ></CustomButton>
+            </MovieCard>
           </Col>
           <Col className="text-light fw-bolder ">
             <h2 className="fw-bold">{detail?.title}</h2>
