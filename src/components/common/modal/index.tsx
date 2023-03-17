@@ -1,21 +1,21 @@
 import React, { FC } from "react";
 import { Button } from "react-bootstrap";
-
 import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
 
 type Props = {
   msg: string;
   show: boolean;
   onClose: () => void;
+  navigate?: () => void;
 };
 
-const CustomModal: FC<Props> = ({ msg, show, onClose }) => {
-  const navigate = useNavigate();
-
-  const handleClose = () => {
+const CustomModal: FC<Props> = ({ msg, show, onClose, navigate }) => {
+  const handleModalClose = () => {
     onClose();
-    navigate(-1);
+    onClose();
+    if (navigate) {
+      navigate();
+    }
   };
 
   return (
@@ -31,7 +31,7 @@ const CustomModal: FC<Props> = ({ msg, show, onClose }) => {
         <Modal.Body className="text-center">{msg}</Modal.Body>
 
         <Modal.Footer>
-          <Button variant="dark" onClick={handleClose}>
+          <Button variant="dark" onClick={handleModalClose}>
             Close
           </Button>
         </Modal.Footer>
