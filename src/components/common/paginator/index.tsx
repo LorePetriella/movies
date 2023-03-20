@@ -39,9 +39,7 @@ const PageSelector: FC<Props> = ({ page, totalPages, onClick }) => {
     }
   };
   const last = () => {
-    let lastPage;
-    totalPages <= "500" ? (lastPage = totalPages) : (lastPage = "500");
-
+    const lastPage = totalPages <= "500" ? totalPages : "500";
     if (onClick) {
       onClick((page = lastPage));
     } else {
