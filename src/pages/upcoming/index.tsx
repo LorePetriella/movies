@@ -1,4 +1,9 @@
-import { CustomButton, Layout, MovieCard } from "../../components";
+import {
+  CustomButton,
+  Layout,
+  MovieCard,
+  PageSelector,
+} from "../../components";
 import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
@@ -10,18 +15,22 @@ import { useSearchParams } from "react-router-dom";
 const UpcomingPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState("");
+  const [totalPages, setTotalPages] = useState("");
 
   useEffect(() => {
     servicesMovies
       .getUpcoming({ page: searchParams.get("page") || "1" })
       .then((data) => {
         setMovies(data.results);
+        setPage(data.page);
+        setTotalPages(data.total_pages);
       });
-  }, []);
+  }, [searchParams]);
 
   return (
     <Layout>
-      <Container fluid className="p-4">
+      <Container className="p-4">
         <h2 className="text-center">Próximos Estrenos</h2>
         <Row>
           {movies &&
@@ -39,6 +48,11 @@ const UpcomingPage = () => {
                 </MovieCard>
               </Col>
             ))}
+        </Row>
+        <Row className="d-flex justify-content-center ">
+          <Col sm={3}>
+            <PageSelector page={page} totalPages={totalPages} />
+          </Col>
         </Row>
       </Container>
     </Layout>
