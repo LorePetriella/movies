@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
+import "./styles.scss";
 
 type Props = {
   page: string;
@@ -24,15 +25,14 @@ const PageSelector: FC<Props> = ({ page, totalPages }) => {
     setSearchParams({ page: stringPage });
   };
   const last = () => {
-    let lastPage = totalPages;
-
-    setSearchParams({ page: lastPage || "500" });
+    const lastPage = totalPages <= "500" ? totalPages : "500";
+    setSearchParams({ page: lastPage });
   };
 
   useEffect(() => {}, [searchParams]);
 
   return (
-    <Pagination>
+    <Pagination size="lg" className="pagination-black">
       <Pagination.First onClick={() => first()} active={page == "1"} />
       <Pagination.Prev onClick={() => prev()} disabled={page == "1"} />
       <Pagination.Item>{page}</Pagination.Item>
