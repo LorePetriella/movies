@@ -6,6 +6,7 @@ import { servicesMovies } from "../../services/movies";
 import "./styles.scss";
 import YouTube from "react-youtube";
 import { CustomModal } from "../../components/common";
+import { BeatLoader } from "react-spinners";
 
 type TrailerProps = {
   key: string;
@@ -16,7 +17,7 @@ const TrailerPage = () => {
   const { id } = useParams();
 
   const [trailer, setTrailer] = useState<TrailerProps>();
-
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isOpenModal, setIsOpenModal] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
@@ -36,33 +37,71 @@ const TrailerPage = () => {
             setTrailer(trailer ? trailer : data.videos.results[0]);
             console.log(trailer);
           }
+          setIsLoading(false);
         });
     }
   }, []);
 
+  //   return (
+  //     <Layout>
+  //       {trailer ? (
+  //         <>
+  //           <YouTube
+  //             videoId={trailer.key}
+  //             className="reproductor container"
+  //             opts={{
+  //               width: "100%",
+  //               height: "100%",
+  //               playerVars: {
+  //                 autoplay: 1,
+  //                 controls: 0,
+  //                 cc_load_policy: 0,
+  //                 fs: 0,
+  //                 iv_load_policy: 0,
+  //                 modestbranding: 0,
+  //                 rel: 0,
+  //                 showinfo: 0,
+  //               },
+  //             }}
+  //           />
+  //         </>
+  //       ) : (
+  //         <CustomModal
+  //           show={isOpenModal}
+  //           onClose={() => setIsOpenModal(false)}
+  //           msg={"Lo sentimos, el trailer no está disponible"}
+  //           navigate={() => navigate(-1)}
+  //         />
+  //       )}
+  //     </Layout>
+  //   );
+  // };
+
   return (
     <Layout>
-      {trailer ? (
-        <>
-          <YouTube
-            videoId={trailer.key}
-            className="reproductor container"
-            opts={{
-              width: "100%",
-              height: "100%",
-              playerVars: {
-                autoplay: 1,
-                controls: 0,
-                cc_load_policy: 0,
-                fs: 0,
-                iv_load_policy: 0,
-                modestbranding: 0,
-                rel: 0,
-                showinfo: 0,
-              },
-            }}
-          />
-        </>
+      {isLoading ? (
+        <div className="text-center mt-5">
+          <BeatLoader color="#007bff" />
+        </div>
+      ) : trailer ? (
+        <YouTube
+          videoId={trailer.key}
+          className="reproductor container"
+          opts={{
+            width: "100%",
+            height: "100%",
+            playerVars: {
+              autoplay: 1,
+              controls: 0,
+              cc_load_policy: 0,
+              fs: 0,
+              iv_load_policy: 0,
+              modestbranding: 0,
+              rel: 0,
+              showinfo: 0,
+            },
+          }}
+        />
       ) : (
         <CustomModal
           show={isOpenModal}
@@ -74,4 +113,5 @@ const TrailerPage = () => {
     </Layout>
   );
 };
+
 export const Trailer = withAuth(TrailerPage);

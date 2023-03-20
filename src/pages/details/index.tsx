@@ -29,7 +29,13 @@ const DetailsPage = () => {
           height: "100vh",
         }}
       >
-        <Row>
+        <Row
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Col>
             <MovieCard title={""} img={`${BASE_IMG}${detail?.poster_path}`}>
               <CustomButton
@@ -39,7 +45,10 @@ const DetailsPage = () => {
               ></CustomButton>
             </MovieCard>
           </Col>
-          <Col className="text-light fw-bolder ">
+          <Col
+            className="text-light fw-bolder"
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.6)", padding: "1rem" }}
+          >
             <h2 className="fw-bold">{detail?.title}</h2>
             <p className="">Resúmen: {detail?.overview}</p>
 

@@ -13,7 +13,11 @@ type Props = {
 const CustomButton: FC<Props> = ({ variant, onClick, label }) => {
   const navigate = useNavigate();
   return (
-    <Button variant={variant} onClick={() => navigate(onClick())}>
+    <Button
+      className="shadow"
+      variant={variant}
+      onClick={() => navigate(onClick())}
+    >
       {label}
     </Button>
   );
