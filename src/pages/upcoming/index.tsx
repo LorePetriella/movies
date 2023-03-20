@@ -14,9 +14,9 @@ import { useSearchParams } from "react-router-dom";
 
 const UpcomingPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState("");
   const [totalPages, setTotalPages] = useState("");
-  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     servicesMovies
