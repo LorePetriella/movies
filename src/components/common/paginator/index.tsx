@@ -25,9 +25,7 @@ const PageSelector: FC<Props> = ({ page, totalPages }) => {
     setSearchParams({ page: stringPage });
   };
   const last = () => {
-    let lastPage;
-    totalPages <= "500" ? (lastPage = totalPages) : (lastPage = "500");
-
+    const lastPage = totalPages <= "500" ? totalPages : "500";
     setSearchParams({ page: lastPage });
   };
 
