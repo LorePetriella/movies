@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Pagination } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import "./styles.scss";
@@ -6,30 +6,46 @@ import "./styles.scss";
 type Props = {
   page: string;
   totalPages: string;
+  onClick?: (page: string, query?: string) => void;
 };
 
-const PageSelector: FC<Props> = ({ page, totalPages }) => {
+const PageSelector: FC<Props> = ({ page, totalPages, onClick }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const first = () => {
-    setSearchParams({ page: "1" });
+    if (onClick) {
+      onClick("1");
+    } else {
+      setSearchParams({ page: "1" });
+    }
   };
   const prev = () => {
     let numberPage = Number(page) - 1;
     let stringPage = numberPage.toString();
-    setSearchParams({ page: stringPage });
+    if (onClick) {
+      onClick(stringPage);
+    } else {
+      setSearchParams({ page: stringPage });
+    }
   };
   const next = () => {
     let numberPage = Number(page) + 1;
     let stringPage = numberPage.toString();
-    setSearchParams({ page: stringPage });
+
+    if (onClick) {
+      onClick(stringPage);
+    } else {
+      setSearchParams({ page: stringPage });
+    }
   };
   const last = () => {
     const lastPage = totalPages <= "500" ? totalPages : "500";
-    setSearchParams({ page: lastPage });
+    if (onClick) {
+      onClick(lastPage);
+    } else {
+      setSearchParams({ page: lastPage });
+    }
   };
-
-  useEffect(() => {}, [searchParams]);
 
   return (
     <Pagination size="lg" className="pagination-black">
