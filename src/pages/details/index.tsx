@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { CustomButton, Layout, MovieCard } from "../../components";
@@ -37,10 +37,17 @@ const DetailsPage = () => {
           }}
         >
           <Col>
-            <MovieCard title={""} img={`${BASE_IMG}${detail?.poster_path}`}>
+            <MovieCard
+              title={""}
+              img={
+                detail?.poster_path
+                  ? `${BASE_IMG}${detail?.poster_path}`
+                  : "/img/poster_not_found.png"
+              }
+            >
               <CustomButton
                 variant={"dark"}
-                onClick={() => `/movies/${Number(detail?.id)}/videos`}
+                onClick={() => navigate(`/movies/${Number(detail?.id)}/videos`)}
                 label={"Trailer"}
               ></CustomButton>
             </MovieCard>

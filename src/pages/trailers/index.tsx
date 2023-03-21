@@ -42,46 +42,11 @@ const TrailerPage = () => {
     }
   }, []);
 
-  //   return (
-  //     <Layout>
-  //       {trailer ? (
-  //         <>
-  //           <YouTube
-  //             videoId={trailer.key}
-  //             className="reproductor container"
-  //             opts={{
-  //               width: "100%",
-  //               height: "100%",
-  //               playerVars: {
-  //                 autoplay: 1,
-  //                 controls: 0,
-  //                 cc_load_policy: 0,
-  //                 fs: 0,
-  //                 iv_load_policy: 0,
-  //                 modestbranding: 0,
-  //                 rel: 0,
-  //                 showinfo: 0,
-  //               },
-  //             }}
-  //           />
-  //         </>
-  //       ) : (
-  //         <CustomModal
-  //           show={isOpenModal}
-  //           onClose={() => setIsOpenModal(false)}
-  //           msg={"Lo sentimos, el trailer no está disponible"}
-  //           navigate={() => navigate(-1)}
-  //         />
-  //       )}
-  //     </Layout>
-  //   );
-  // };
-
   return (
     <Layout>
       {isLoading ? (
         <div className="text-center mt-5">
-          <BeatLoader color="#007bff" />
+          <BeatLoader color="#FFFFFF" />
         </div>
       ) : trailer ? (
         <YouTube

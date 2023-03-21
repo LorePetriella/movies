@@ -18,11 +18,15 @@ const SearchForm: FC<Props> = ({ onSearch }) => {
   }, [fields]);
 
   return (
-    <Form className="d-flex">
+    <Form className="d-flex justify-content-center mt-4">
       <Form.Control
         type="search"
         value={fields.query}
         placeholder="Tu Búsqueda"
+        style={{ borderColor: "gray", width: "40%" }}
+        onFocus={(e) => {
+          e.target.style.borderColor = "red";
+        }}
         className="me-2"
         aria-label="Search"
         onChange={(e) => {

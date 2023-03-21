@@ -10,13 +10,14 @@ import { Col, Container, Row } from "react-bootstrap";
 import { BASE_IMG } from "../../constants";
 import { Movie } from "../../types";
 import { servicesMovies } from "../../services/movies";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const UpcomingPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState("");
   const [totalPages, setTotalPages] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     servicesMovies
@@ -38,11 +39,15 @@ const UpcomingPage = () => {
               <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
                 <MovieCard
                   title={movie.title}
-                  img={`${BASE_IMG}${movie.poster_path}`}
+                  img={
+                    movie.poster_path
+                      ? `${BASE_IMG}${movie.poster_path}`
+                      : "/img/poster_not_found.png"
+                  }
                 >
                   <CustomButton
                     variant={"dark"}
-                    onClick={() => `/movies/${Number(movie.id)}`}
+                    onClick={() => navigate(`/movies/${Number(movie.id)}`)}
                     label={"Más Info"}
                   ></CustomButton>
                 </MovieCard>

@@ -2,7 +2,7 @@ import { CustomButton, Layout, PageSelector } from "../../components";
 import { withAuth } from "../../hoc";
 import React, { useEffect, useState } from "react";
 import { FormField, Movie } from "../../types";
-import { useSearchParams } from "react-router-dom";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import { servicesMovies } from "../../services/movies";
 import { Col, Container, Row } from "react-bootstrap";
 import { MovieCard } from "../../components/common/card";
@@ -15,6 +15,7 @@ const SearchPage = () => {
   const [totalPages, setTotalPages] = useState("");
   const [params, setParams] = useState({ query: "", page: "1" });
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setSearchParams(params);
@@ -53,11 +54,15 @@ const SearchPage = () => {
               <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
                 <MovieCard
                   title={movie.title}
-                  img={`${BASE_IMG}${movie.poster_path}`}
+                  img={
+                    movie.poster_path
+                      ? `${BASE_IMG}${movie.poster_path}`
+                      : "/img/poster_not_found.png"
+                  }
                 >
                   <CustomButton
                     variant={"dark"}
-                    onClick={() => `/movies/${Number(movie.id)}`}
+                    onClick={() => navigate(`/movies/${Number(movie.id)}`)}
                     label={"Más Info"}
                   ></CustomButton>
                 </MovieCard>
