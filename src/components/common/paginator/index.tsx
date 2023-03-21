@@ -14,7 +14,7 @@ const PageSelector: FC<Props> = ({ page, totalPages, onClick }) => {
 
   const first = () => {
     if (onClick) {
-      onClick((page = "1"));
+      onClick("1");
     } else {
       setSearchParams({ page: "1" });
     }
@@ -41,7 +41,7 @@ const PageSelector: FC<Props> = ({ page, totalPages, onClick }) => {
   const last = () => {
     const lastPage = totalPages <= "500" ? totalPages : "500";
     if (onClick) {
-      onClick((page = lastPage));
+      onClick(lastPage);
     } else {
       setSearchParams({ page: lastPage });
     }
