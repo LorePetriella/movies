@@ -15,8 +15,12 @@ const Slider: FC<Props> = ({ movies }) => {
         {movies.splice(0, 10).map((movie) => (
           <Carousel.Item key={movie.id}>
             <img
-              className="d-block w-100 slider-img "
-              src={`${BASE_IMG}${movie.poster_path}`}
+
+              className="d-block w-100 slider-img"
+              src={`${BASE_IMG}${movie.backdrop_path}`}
+
+           
+
               alt={movie.title}
             />
             <Carousel.Caption>
