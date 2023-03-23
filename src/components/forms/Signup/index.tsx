@@ -75,11 +75,7 @@ const Signup = () => {
           </Col>
         </Row>
 
-        <Button
-          variant="dark"
-          type="submit"
-          className="d-flex justify-content-center align-items-center"
-        >
+        <Button variant="dark" type="submit" className="d-flex">
           Crear Cuenta
         </Button>
       </Form>
