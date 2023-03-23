@@ -11,67 +11,79 @@ const Signup = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Ingresar Email"
-            {...register("email")}
-          />
-          <Form.Text className="text-danger">Datos incorrectos</Form.Text>
-        </Form.Group>
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{
+        height: "100vh",
+        backgroundColor: "rgba(0, 0, 0, 0.6)",
+      }}
+    >
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Ingresar Email"
+              {...register("email")}
+            />
+            {/* <Form.Text className="text-danger">Datos incorrectos</Form.Text> */}
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Contraseña</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Ingresar Contraseña"
-            {...register("password")}
-          />
-          <Form.Text className="text-danger">Datos incorrectos</Form.Text>
-        </Form.Group>
-      </Row>
+          <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Label>Contraseña</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Ingresar Contraseña"
+              {...register("password")}
+            />
+            {/* <Form.Text className="text-danger">Datos incorrectos</Form.Text> */}
+          </Form.Group>
+        </Row>
 
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridName">
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Ingresar Nombre"
-            {...register("name")}
-          />
-          <Form.Text className="text-danger">Datos incorrectos</Form.Text>
-        </Form.Group>
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridName">
+            <Form.Label>Nombre</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingresar Nombre"
+              {...register("name")}
+            />
+            {/* <Form.Text className="text-danger">Datos incorrectos</Form.Text> */}
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridSurname">
-          <Form.Label>Apellido</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Ingresar Apellido"
-            {...register("lastname")}
-          />
-          <Form.Text className="text-danger">Datos incorrectos</Form.Text>
-        </Form.Group>
-      </Row>
+          <Form.Group as={Col} controlId="formGridSurname">
+            <Form.Label>Apellido</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingresar Apellido"
+              {...register("lastname")}
+            />
+            {/* <Form.Text className="text-danger">Datos incorrectos</Form.Text> */}
+          </Form.Group>
+        </Row>
 
-      <Row className="mb-3">
-        <Col sm={6}>
-          <Form.Label>Fecha de Nacimiento</Form.Label>
-          <Form.Control
-            type="date"
-            placeholder="Ingresar Fecha de Nacimiento"
-            {...register("birthdate")}
-          />
-          <Form.Text className="text-danger">Datos incorrectos</Form.Text>
-        </Col>
-      </Row>
+        <Row className="mb-3">
+          <Col sm={6}>
+            <Form.Label>Fecha de Nacimiento</Form.Label>
+            <Form.Control
+              type="date"
+              placeholder="Ingresar Fecha de Nacimiento"
+              {...register("birthdate")}
+            />
+            {/* <Form.Text className="text-danger">Datos incorrectos</Form.Text> */}
+          </Col>
+        </Row>
 
-      <Button variant="outline-dark" type="submit">
-        Crear Cuenta
-      </Button>
-    </Form>
+        <Button
+          variant="dark"
+          type="submit"
+          className="d-flex justify-content-center align-items-center"
+        >
+          Crear Cuenta
+        </Button>
+      </Form>
+    </div>
   );
 };
 export { Signup };
