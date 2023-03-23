@@ -28,7 +28,9 @@ const CustomModal: FC<Props> = ({ msg, show, onClose, navigate }) => {
           <Modal.Title>Trailer Status</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body className="text-center">{msg}</Modal.Body>
+        <Modal.Body className="text-center">
+          <p className="lead">{msg}</p>
+        </Modal.Body>
 
         <Modal.Footer>
           <Button variant="dark" onClick={handleModalClose}>

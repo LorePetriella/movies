@@ -1,19 +1,24 @@
 import { FC } from "react";
 import { Button } from "react-bootstrap";
 
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 type Props = {
   variant: string;
-  onClick: () => string;
+  onClick: () => void;
   label: string;
   id?: number;
 };
 
 const CustomButton: FC<Props> = ({ variant, onClick, label }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
-    <Button variant={variant} onClick={() => navigate(onClick())}>
+    <Button
+      className="shadow"
+      variant={variant}
+      // onClick={() => navigate(onClick())}
+      onClick={onClick}
+    >
       {label}
     </Button>
   );
