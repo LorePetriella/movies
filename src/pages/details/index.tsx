@@ -49,6 +49,7 @@ const DetailsPage = () => {
                 variant={"dark"}
                 onClick={() => navigate(`/movies/${Number(detail?.id)}/videos`)}
                 label={"Trailer"}
+                className={"shadow"}
               ></CustomButton>
             </MovieCard>
           </Col>
