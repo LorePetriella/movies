@@ -24,6 +24,7 @@ const PopularPage = () => {
       .getPopular({ page: searchParams.get("page") || "1" })
       .then((data) => {
         setMovies(data.results);
+
         setPage(data.page);
         setTotalPages(data.total_pages);
       });
